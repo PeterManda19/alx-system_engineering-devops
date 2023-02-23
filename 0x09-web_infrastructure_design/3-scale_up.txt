@@ -1,0 +1,36 @@
+DNS Server: The first component is a DNS server, which resolves domain names to IP addresses. We will draw a box labeled "DNS Server" and connect it to the internet.
+
+Firewall: To protect our web infrastructure from potential attacks, we need a firewall. We will draw a box labeled "Firewall" and connect it to the internet and the DNS server.
+
+Load Balancer: We will use HAproxy as our load balancer. We will draw two boxes labeled "Load Balancer 1" and "Load Balancer 2" and connect them to the firewall. We will configure the two load balancers as a cluster to ensure high availability and load balancing.
+
+Web Server: We will add a web server to handle static content delivery. We will draw a box labeled "Web Server" and connect it to both load balancers.
+
+Application Server: We will add an application server to handle dynamic content generation and business logic. We will draw a box labeled "Application Server" and connect it to both load balancers.
+
+Database Server: We will add a database server to store our data. We will draw a box labeled "Database Server" and connect it to both load balancers.
+
+Now, let's go over the specifics of this infrastructure:
+
+Why we are adding each component: We add each component to ensure the availability, scalability, and security of our web infrastructure.
+
+Load balancer cluster: We configure our HAproxy load balancers as a cluster to ensure high availability and load balancing. If one load balancer fails, the other one can take over without any disruption to the service.
+
+Now that we have a basic design, let's explain why we are adding each component:
+
+DNS Server: The DNS server is responsible for resolving domain names to IP addresses. Without it, users would not be able to access our website.
+
+Firewall: The firewall protects our web infrastructure from potential attacks, such as DDoS attacks or attempts to exploit vulnerabilities in our software.
+
+Load Balancer: The load balancer distributes incoming traffic across multiple servers, ensuring that no single server is overloaded. This helps us achieve high availability and scalability.
+
+Web Server: The web server handles the delivery of static content, such as HTML, CSS, and JavaScript files. By separating static content from dynamic content, we can improve performance and scalability.
+
+Application Server: The application server handles the generation of dynamic content, such as database queries and user authentication. By separating dynamic content from static content, we can improve performance and scalability.
+
+Database Server: The database server stores our data and handles database queries. By separating the database from the application server, we can improve performance and scalability.
+
+Overall, this infrastructure design meets your requirements by splitting components across different servers and ensuring high availability and load balancing with a load balancer cluster.
+
+
+

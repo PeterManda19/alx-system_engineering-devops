@@ -1,0 +1,40 @@
+DNS Server: As in the previous design, the first component is a DNS server, which resolves domain names to IP addresses. We will draw a box labeled "DNS Server" and connect it to the internet.
+
+Firewall: To protect our web infrastructure from potential attacks, we need a firewall. We will draw a box labeled "Firewall" and connect it to the internet and the DNS server.
+
+Load Balancer: To distribute incoming traffic across multiple servers, we will add a load balancer. In this case, we will use HAproxy. We will draw a box labeled "Load Balancer" and connect it to the firewall.
+
+Web Servers: We will add two web servers to ensure high availability. We will use Nginx as our web server software. We will draw two boxes labeled "Web Server 1" and "Web Server 2" and connect them to the load balancer.
+
+Application Server: We will add an application server to handle dynamic content generation and business logic. We will draw a box labeled "Application Server" and connect it to both web servers.
+
+Set of Application Files: To host the application code base, we will use a directory on the application server. We will draw a box labeled "Application Files" and connect it to the application server.
+
+Database: We will use MySQL as our database server. We will draw a box labeled "Database Server" and connect it to the application server.
+
+Database Replication: To ensure data availability and prevent data loss, we will configure MySQL with Primary-Replica (Master-Slave) replication. In this setup, the Primary node is the master, and the Replica node is the slave. The Primary node receives all write operations and synchronizes the data with the Replica node. The Replica node is read-only and is used to scale reads and provide redundancy.
+
+Monitoring: We will add a monitoring tool to monitor the infrastructure's performance and security. We will draw a box labeled "Monitoring" and connect it to all the other boxes.
+
+Now, let's go over the specifics of this infrastructure:
+
+Why we are adding each component: We add each component to ensure the availability, scalability, and security of our web infrastructure.
+
+Load balancer distribution algorithm: Our HAproxy load balancer is configured with a round-robin distribution algorithm. This algorithm distributes incoming requests evenly across all available servers.
+
+Load balancer setup: Our load balancer is enabling an Active-Active setup, meaning that both web servers are active and serving traffic at all times.
+
+Primary-Replica database cluster: In a Primary-Replica database cluster, the Primary node receives all write operations and synchronizes the data with the Replica node. The Replica node is read-only and is used to scale reads and provide redundancy.
+
+Difference between the Primary and Replica nodes: The Primary node receives all write operations and is responsible for synchronizing the data with the Replica node. The Replica node is read-only and can be used to scale reads and provide redundancy.
+
+Now, let's go over the issues with this infrastructure:
+
+Single point of failure (SPOF): Our infrastructure currently has a single point of failure in the load balancer. If the load balancer goes down, traffic cannot be distributed to the web servers.
+
+Security issues: Our infrastructure currently lacks a dedicated firewall and HTTPS encryption, making it vulnerable to attacks.
+
+No monitoring: Without proper monitoring, we cannot detect and address issues in a timely manner.
+
+
+

@@ -1,0 +1,23 @@
+To design a three server web infrastructure that hosts the website www.foobar.com, we will need to add:
+
+Two servers: These will be used to host the web server, application server, and database server.
+One web server (Nginx): The web server will serve web content to clients via HTTP/HTTPS.
+One application server: The application server will handle the logic and processing required for the website to function.
+One load-balancer (HAproxy): The load balancer will distribute incoming requests across multiple servers to increase availability and performance.
+One set of application files: This will be the code base that the application server will use to generate the website's pages and functionality.
+One database (MySQL): The database will store data for the website and application server.
+We are adding the above elements to achieve a high-performance, highly available, and scalable web infrastructure.
+
+The load-balancer will be configured with a round-robin distribution algorithm. This algorithm distributes requests equally across all servers in the cluster, ensuring that no server is overloaded with traffic.
+
+The load-balancer will enable an Active-Passive setup. In this setup, one server will be active, while the other server will be passive, serving as a backup. If the active server goes down, the load-balancer will redirect traffic to the passive server, ensuring uninterrupted service.
+
+A database Primary-Replica (Master-Slave) cluster works by having a primary node that accepts both read and write operations and replicates its data to one or more replica nodes. The replica nodes only accept read operations and synchronize their data with the primary node. This configuration ensures that the database is highly available and provides a failover mechanism in case the primary node fails.
+
+The primary node in a Primary-Replica (Master-Slave) cluster is the node that accepts write operations and is responsible for ensuring data consistency. The replica nodes, on the other hand, only accept read operations and provide scalability by serving read requests.
+
+The issues with this infrastructure are as follows:
+
+SPOF: The load-balancer is a single point of failure. If the load-balancer goes down, the entire infrastructure will be unreachable. To mitigate this, we can add a second load-balancer in a redundant setup.
+Security issues: There are no firewalls or HTTPS in this infrastructure. Firewalls are used to protect the infrastructure from external attacks, and HTTPS ensures that traffic between clients and the web server is encrypted. To secure the infrastructure, we can add firewalls and an SSL certificate to serve the website over HTTPS.
+No monitoring: There are no monitoring tools in place to track the health and performance of the infrastructure. To monitor the infrastructure, we can add monitoring clients, such as data collectors for Sumologic or other monitoring services. To monitor the web server QPS, we can use a monitoring tool that tracks the number of queries per second and sends an alert if it goes above a certain threshold.

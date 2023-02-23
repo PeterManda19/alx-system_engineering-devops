@@ -1,0 +1,36 @@
+Load Balancer: The first component is a load balancer. We will use a software load balancer, such as Nginx or HAProxy. We will draw a box labeled "Load Balancer" and connect it to the internet.
+
+Web Servers: We will add two web servers to handle incoming traffic. We will draw two boxes labeled "Web Server 1" and "Web Server 2" and connect them to the load balancer.
+
+Application Servers: We will add two application servers to handle dynamic content generation and business logic. We will draw two boxes labeled "Application Server 1" and "Application Server 2" and connect them to the load balancer.
+
+Database Servers: We will add two database servers to store our data. We will draw two boxes labeled "Database Server 1" and "Database Server 2" and connect them to the load balancer.
+
+Firewalls: We will add three firewalls to secure our infrastructure. We will draw three boxes labeled "Firewall 1", "Firewall 2", and "Firewall 3" and connect them between the load balancer and the internet.
+
+SSL Certificate: We will obtain an SSL certificate to serve www.foobar.com over HTTPS. We will configure the load balancer to terminate SSL at the load balancer level. We will draw a box labeled "SSL Certificate" and connect it to the load balancer.
+
+Monitoring Clients: We will add three monitoring clients to collect data about our infrastructure. We will use a data collector for Sumologic or other monitoring services. We will draw three boxes labeled "Monitoring Client 1", "Monitoring Client 2", and "Monitoring Client 3" and connect them to the load balancer.
+
+Now, let's go over the specifics of this infrastructure:
+
+Why we are adding each component: We add each component to ensure the availability, scalability, security, and monitoring of our web infrastructure.
+
+Firewalls: Firewalls are used to protect our web infrastructure from potential attacks, such as DDoS attacks or attempts to exploit vulnerabilities in our software.
+
+HTTPS: Serving traffic over HTTPS ensures that data transmitted between the client and server is encrypted and secure. This is important for protecting sensitive user data and preventing man-in-the-middle attacks.
+
+Monitoring: Monitoring is used to track the performance, availability, and security of our web infrastructure. It helps us identify issues before they become critical and optimize our infrastructure for peak performance.
+
+Data collection: The monitoring tool collects data by querying various components of our infrastructure, such as the load balancer, web servers, application servers, and database servers. This data is then analyzed to generate insights and alerts.
+
+QPS monitoring: To monitor web server QPS, we can use a monitoring tool to collect data on the number of queries per second being processed by our web servers. We can then set up alerts to notify us if the QPS exceeds a certain threshold.
+
+Now let's go over the issues with this infrastructure:
+
+Terminating SSL at the load balancer level: Terminating SSL at the load balancer level can be an issue because it means that the data is unencrypted between the load balancer and the application servers. To mitigate this issue, we can configure end-to-end encryption by using SSL certificates on both the load balancer and application servers.
+
+One MySQL server capable of accepting writes: Having only one MySQL server capable of accepting writes can be an issue because it creates a single point of failure. To mitigate this issue, we can set up a MySQL cluster with multiple nodes to ensure high availability and redundancy.
+
+Servers
+
