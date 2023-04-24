@@ -61,4 +61,3 @@ if __name__ == '__main__':
     completed_tasks = get_completed_tasks(todo_list)
     total_tasks = len(todo_list)
     display_progress(employee_name, completed_tasks, total_tasks)
-

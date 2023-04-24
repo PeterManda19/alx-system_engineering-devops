@@ -1,37 +1,33 @@
 #!/usr/bin/python3
-"""Export data in JSON format for all employees"""
+"""Export data in JSON format"""
 
 import json
 import requests
+import sys
 
 
 if __name__ == '__main__':
-    url = 'https://jsonplaceholder.typicode.com/users'
-    response = requests.get(url)
-    if response.status_code == 200:
-        employees = response.json()
-
+    url_users = 'https://jsonplaceholder.typicode.com/users'
+    response_users = requests.get(url_users)
+    if response_users.status_code == 200:
+        users = response_users.json()
         tasks_dict = {}
-        for employee in employees:
-            user_id = employee.get('id')
-            employee_name = employee.get('name')
+        for user in users:
+            user_id = user.get('id')
+            employee_name = user.get('name')
 
-            url = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(user_id)
-            response = requests.get(url)
-            if response.status_code == 200:
-                tasks = response.json()
-
-                task_list = []
+            url_todos = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(user_id)
+            response_todos = requests.get(url_todos)
+            if response_todos.status_code == 200:
+                tasks = response_todos.json()
+                tasks_list = []
                 for task in tasks:
-                    task_dict = {"username": employee_name, "task": task.get('title'), "completed": task.get('completed')}
-                    task_list.append(task_dict)
+                    task_dict = {"task": task.get('title'), "completed": task.get('completed'), "username": employee_name}
+                    tasks_list.append(task_dict)
+                tasks_dict[user_id] = tasks_list
 
-                tasks_dict[user_id] = task_list
-
-        # Write tasks to JSON file
-        filename = "todo_all_employees.json"
-        with open(filename, mode='w') as file:
-            json.dump(tasks_dict, file)
-
+        with open('todo_all_employees.json', mode='w') as json_file:
+            json.dump(tasks_dict, json_file)
     else:
-        print("Error: Could not retrieve employee data")
+        print("Error retrieving users")
+        sys.exit(1)
