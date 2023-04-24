@@ -16,11 +16,13 @@ if __name__ == '__main__':
         if response.status_code == 200:
             employee_name = response.json().get('name')
 
-            url = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(user_id)
+            url = ('https://jsonplaceholder.typicode.com/todos?userId={}'
+                   .format(user_id))
             response = requests.get(url)
             if response.status_code == 200:
                 tasks = response.json()
-                num_of_completed_tasks = sum(1 for task in tasks if task.get('completed'))
+                num_of_completed_tasks = sum(
+                    1 for task in tasks if task.get('completed'))
                 total_num_of_tasks = len(tasks)
 
                 # Print employee progress report
@@ -37,7 +39,11 @@ if __name__ == '__main__':
                 with open(filename, mode='w') as file:
                     task_list = []
                     for task in tasks:
-                        task_dict = {"task": task.get('title'), "completed": task.get('completed'), "username": employee_name}
+                        task_dict = {
+                            "task": task.get('title'),
+                            "completed": task.get('completed'),
+                            "username": employee_name
+                            }
                         task_list.append(task_dict)
                     json.dump({user_id: task_list}, file)
 
