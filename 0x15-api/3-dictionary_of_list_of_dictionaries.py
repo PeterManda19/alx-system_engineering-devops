@@ -16,8 +16,8 @@ if __name__ == '__main__':
             user_id = user.get('id')
             employee_name = user.get('name')
 
-            url_todos = ('https://jsonplaceholder.typicode.com/todos?userId={}'.
-                         format(user_id))
+            url_todos = ('https://jsonplaceholder.typicode.com/todos?userId={}'
+                         .format(user_id))
             response_todos = requests.get(url_todos)
             if response_todos.status_code == 200:
                 tasks = response_todos.json()
