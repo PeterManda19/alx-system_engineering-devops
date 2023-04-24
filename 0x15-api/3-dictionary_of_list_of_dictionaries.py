@@ -28,18 +28,9 @@ if __name__ == '__main__':
                                  "username": employee_name}
                     tasks_list.append(task_dict)
                 tasks_dict[user_id] = tasks_list
-            else:
-                print(f"Error retrieving tasks for user {user_id}")
-                sys.exit(1)
 
         with open('todo_all_employees.json', mode='w') as json_file:
             json.dump(tasks_dict, json_file)
-            
-        if len(tasks_dict) == len(users):
-            print("All users found: OK")
-        else:
-            print("Not all users were found in the output")
-            sys.exit(1)
     else:
         print("Error retrieving users")
         sys.exit(1)
