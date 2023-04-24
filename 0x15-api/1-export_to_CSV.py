@@ -14,11 +14,13 @@ if __name__ == '__main__':
         if response.status_code == 200:
             employee_name = response.json().get('name')
 
-            url = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(user_id)
+            url = ('https://jsonplaceholder.typicode.com/todos?userId={}'
+                   .format(user_id))
             response = requests.get(url)
             if response.status_code == 200:
                 tasks = response.json()
-                num_of_completed_tasks = sum(1 for task in tasks if task.get('completed'))
+                num_of_completed_tasks = sum(
+                    1 for task in tasks if task.get('completed'))
                 total_num_of_tasks = len(tasks)
 
                 # Print employee progress report
@@ -35,7 +37,13 @@ if __name__ == '__main__':
                 with open(filename, mode='w') as file:
                     writer = csv.writer(file, quoting=csv.QUOTE_ALL)
                     for task in tasks:
-                        writer.writerow([user_id, employee_name, task.get('completed'), task.get('title')])
+                        writer.writerow(
+                            [
+                                user_id, employee_name,
+                                task.get('completed'),
+                                task.get('title')
+                                ]
+                            )
 
         else:
             print("User ID not found")
