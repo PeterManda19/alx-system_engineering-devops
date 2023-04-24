@@ -21,7 +21,8 @@ def get_todo_list(employee_id):
     """
     Get todo list from API
     """
-    url = "https://jsonplaceholder.typicode.com/todos?userId={}".format(employee_id)
+    url = ("https://jsonplaceholder.typicode.com/todos?userId={}"
+           .format(employee_id))
     response = requests.get(url)
     return response.json()
 
@@ -41,7 +42,8 @@ def display_progress(employee_name, completed_tasks, total_tasks):
     """
     Display employee progress and completed tasks
     """
-    print("Employee {} is done with tasks({}/{}):".format(employee_name, len(completed_tasks), total_tasks))
+    print("Employee {} is done with tasks({}/{}):"
+          .format(employee_name, len(completed_tasks), total_tasks))
     for task in completed_tasks:
         print("\t {}".format(task))
 
@@ -60,4 +62,6 @@ if __name__ == '__main__':
     todo_list = get_todo_list(employee_id)
     completed_tasks = get_completed_tasks(todo_list)
     total_tasks = len(todo_list)
-    display_progress(employee_name, completed_tasks, total_tasks)
+    display_progress(
+        employee_name, completed_tasks, total_tasks
+        )
